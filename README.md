@@ -29,6 +29,10 @@ The program checks back for the last _20_ iterations to see if the current state
 ### Single step mode
 The cycle can be shown in single step mode. Touch the <b>Single Step</b> button, and then touch the button repeatedly to take it through its steps. Touch <b>Continue</b> to resume normal operation.
 
+### Status Display
+Self explanatory for most values.  
+<b>Max</b>: Highest number of iterations for a cycle since the program began.
+
 ---
 
 ### Config
