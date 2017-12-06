@@ -40,3 +40,11 @@ Self explanatory for most values.
 The _Width_ and _Height_ of the display window are adjustable. This enables runtime sizing for the display (for me, the Raspberry Pi Touchscreen Display).
 
 The <b>Init. cell prob.</b> (initial cell probability) controls the density of the grid at the begining of a cycle. Each cell has a probability (out of 10) of being initialized, with "1" being a low probability while 9 is "high". Heuristic analysis shows that an initial cell probability of 3 or 4 gives the longest run cycles. 
+
+---
+
+### Fixes
+December 5, 2017  
+The Config window would appear multiple times if the config button was pressed repeatedly without closing the Config window.  
+Now the Config window will get focus and will not repeatedly instantiate if the config button is pressed without removing the previous window.  
+(Thanks Martin!)
