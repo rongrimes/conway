@@ -85,7 +85,17 @@ class App:
       self.state = self.states["initialize"]
 
    def st_config(self):
-      conf = Config()
+      global conf
+      try:
+         if conf.visible:
+#           print("Config screen already visible")
+            conf.conf_window.lift()
+            conf.conf_window.focus()
+         else:
+            conf = Config()
+      except NameError:   # for conf
+#           print("Config screen not called yet")
+            conf = Config()
 #--------------------------------------------------------------- 
 
    def change_screen_size(self):
@@ -255,10 +265,13 @@ class Config:
       self.conf_window = Toplevel()
       self.conf_window.title("Configure")
       self.conf_window.geometry(str(config_w)+"x"+str(config_h)+"+60+60") 
+      self.visible = True
+
+      self.conf_window.protocol("WM_DELETE_WINDOW", self.cancel_config)
 
       self.build_control_frame()
 
-      Button(self.conf_window, text = "Cancel", command=self.conf_window.destroy, font = "Verdana 10", 
+      Button(self.conf_window, text = "Cancel", command=self.cancel_config, font = "Verdana 10", 
            height=1, width=10).grid(row=1, column=0, padx=5)
       Button(self.conf_window, text = "Save", command=self.save_config, font = "Verdana 10", 
            height=1, width=10).grid(row=1, column=1, padx=5)
@@ -276,6 +289,10 @@ class Config:
       self.new_initp  = Config_but(config_f, myrow=2, label="Init. cell prob.:",
                               init_val=INIT_FILL_PROBABILITY, limits=(1,9))
 
+   def cancel_config(self):
+      self.visible = False
+      self.conf_window.destroy()
+
    def save_config(self):
       global INIT_FILL_PROBABILITY
       global new_w, new_h
@@ -285,6 +302,7 @@ class Config:
 
       INIT_FILL_PROBABILITY = self.new_initp.buttvalue
 
+      self.visible = False
       self.conf_window.destroy()
 
 
