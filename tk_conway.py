@@ -277,15 +277,15 @@ class Config:
            height=1, width=10).grid(row=1, column=1, padx=5)
 
    def build_control_frame(self):
-      global new_w, new_h
-
       config_f = Frame(self.conf_window,
                  width=200,
                  height=100, bd=2, relief=RAISED)
       config_f.grid(row=0, column=0, columnspan=2, pady=10)
 
-      self.new_width  = Config_but(config_f, myrow=0, label="Width: ", init_val=con_x, limits=None)
-      self.new_height = Config_but(config_f, myrow=1, label="Height:", init_val=con_y, limits=None)
+#     self.new_width  = Config_but(config_f, myrow=0, label="Width: ", init_val=con_x, limits=None)
+#     self.new_height = Config_but(config_f, myrow=1, label="Height:", init_val=con_y, limits=None)
+      self.new_width  = Config_but(config_f, myrow=0, label="Width: ", init_val=con_x, limits=(1,100))
+      self.new_height = Config_but(config_f, myrow=1, label="Height:", init_val=con_y, limits=(1,100))
       self.new_initp  = Config_but(config_f, myrow=2, label="Init. cell prob.:",
                               init_val=INIT_FILL_PROBABILITY, limits=(1,9))
 
